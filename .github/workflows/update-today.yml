@@ -1,4 +1,4 @@
-ame: Update Today Content
+name: Update Today Content
 
 on:
   workflow_dispatch:
@@ -14,12 +14,12 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 - name: Write content to today.txt
+      - uses: actions/checkout@v4
+      - name: Write content to today.txt
         run: |
           cat > today.txt << 'EOF'
           ${{ github.event.inputs.content }}
           EOF
-
       - name: Commit and push
         run: |
           git config user.name "daily-bot"
