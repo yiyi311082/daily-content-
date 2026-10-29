@@ -1,0 +1,20 @@
+name: Update Today Contenton:
+  workflow_dispatch:
+    inputs:
+      content:
+        description: '今日内容'
+        required: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 - name: Update today.txt
+        run: |
+          echo '${{ github.event.inputs.content }}' > today.txt
+      - name: Commit run: |
+          git config user.name "daily-bot"
+          git config user.email "bot@example.com"
+          git add today.txt
+          git commit -m "每日更新 $(date +%Y-%m-%d)"
+          git push
